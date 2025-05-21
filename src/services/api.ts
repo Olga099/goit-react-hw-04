@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { FetchImagesResponse } from '../types';
 
-const API_KEY = 'WRITE YOUR ACCESS KEY HERE';
+const API_KEY = 'a5Cdg8Lofi9uoUwp8IJJcaJuXeseE2xq_fOWSbfxplU';
 const BASE_URL = 'https://api.unsplash.com/search/photos';
 
 export const fetchImages = async (query: string, page: number): Promise<FetchImagesResponse> => {
