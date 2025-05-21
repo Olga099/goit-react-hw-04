@@ -1,12 +1,18 @@
 import { useEffect } from 'react';
 import ReactModal from 'react-modal';
 import styles from './ImageModal.module.css';
+import { UnsplashImage } from '../../types';
 
-ReactModal.setAppElement('#root'); // Це важливо для доступності
+ReactModal.setAppElement('#root');
 
-function ImageModal({ image, onClose }) {
+interface Props {
+  image: UnsplashImage | null;
+  onClose: () => void;
+}
+
+function ImageModal({ image, onClose }: Props) {
   useEffect(() => {
-    const handleKeyDown = e => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onClose();
       }
@@ -29,11 +35,11 @@ function ImageModal({ image, onClose }) {
         <button onClick={onClose} className={styles.closeButton}>Close</button>
         {image && (
           <>
-            <img src={image.urls.regular} alt={image.alt_description || 'Image'} className={styles.image} />
+            <img src={image.urls.regular} alt={image.alt_description ?? 'Image'} className={styles.image} />
             <div className={styles.imageDetails}>
               <p>Author: {image.user.name}</p>
               <p>Likes: {image.likes}</p>
-              <p>{image.description || 'No description available'}</p>
+              <p>{image.description ?? 'No description available'}</p>
             </div>
           </>
         )}

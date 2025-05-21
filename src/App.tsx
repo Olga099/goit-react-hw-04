@@ -6,15 +6,16 @@ import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
 import ImageModal from './components/ImageModal/ImageModal';
 import { fetchImages } from './services/api';
+import { UnsplashImage } from './types';
 
 function App() {
-  const [query, setQuery] = useState('');
-  const [images, setImages] = useState([]);
-  const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [totalPages, setTotalPages] = useState(0);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [query, setQuery] = useState<string>('');
+  const [images, setImages] = useState<UnsplashImage[]>([]);
+  const [page, setPage] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [selectedImage, setSelectedImage] = useState<UnsplashImage | null>(null);
 
   useEffect(() => {
     if (!query) return;
@@ -36,7 +37,7 @@ function App() {
     getImages();
   }, [query, page]);
 
-  const handleSearch = newQuery => {
+  const handleSearch = (newQuery: string) => {
     if (query === newQuery) return;
     setQuery(newQuery);
     setPage(1);
@@ -46,7 +47,7 @@ function App() {
 
   const handleLoadMore = () => setPage(prev => prev + 1);
 
-  const openModal = image => setSelectedImage(image);
+  const openModal = (image: UnsplashImage) => setSelectedImage(image);
   const closeModal = () => setSelectedImage(null);
 
   return (

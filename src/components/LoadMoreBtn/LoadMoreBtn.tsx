@@ -1,6 +1,10 @@
 import styles from './LoadMoreBtn.module.css';
 
-function LoadMoreBtn({ onClick }) {
+interface Props {
+  onClick: () => void;
+}
+
+function LoadMoreBtn({ onClick }: Props) {
   return (
     <div className={styles.wrapper}>
       <button className={styles.button} onClick={onClick}>

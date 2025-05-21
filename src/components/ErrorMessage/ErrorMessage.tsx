@@ -1,6 +1,10 @@
 import styles from './ErrorMessage.module.css';
 
-function ErrorMessage({ message }) {
+interface Props {
+  message: string;
+}
+
+function ErrorMessage({ message }: Props) {
   return <p className={styles.error}>{message}</p>;
 }
 
